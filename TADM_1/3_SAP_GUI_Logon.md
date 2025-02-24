@@ -129,3 +129,13 @@ SAP GUI for Windows             SAP GUI for Java            SAP GUI for HTML
 - /nEX -> end the logon session without confirmation dialog box
 
 - /i -> delete the session currently using
+
+### Help Options
+
+- F1 Help means to press F1 to display an explanation of fields, menus, functions and messages. F1 displays technical information on the relevant field.
+
+- Can use other buttons in the Performance Assistant dialog box to display information on the selected field. 
+
+### Personalization of the SAP GUI
+
+- How to adapt the local layout? Using SAP GUI settings and actions can manage the input history by choosing Options ... -> Local Data. If activatedm the input history creates a small database on the FE containing the last n entries made in the input fields in transactions.
