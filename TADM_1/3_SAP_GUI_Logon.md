@@ -91,3 +91,41 @@ SAP GUI for Windows             SAP GUI for Java            SAP GUI for HTML
 - The end user can switch from role-based user menu to standard menu if the system settings permit this
 
 - To influence the design of the initial screen we can use Extras -> Settings (on the SAP Easy Access screen)
+
+### Favourites Management
+
+- The user is provided with functions in the Favourites area
+
+- Ex: Links to frequently used transactions, web links or files can be stored in the Favourites area
+
+- The Favourites liest contains references to SAP system functions or links to internet content or to files pn the end user's FE computer
+
+- How to add to favourites: Favourites Tab -> Add OR Drag and Drop OR Adding links
+
+- To delete on favourites: Highlish the entry -> Right-Click -> Choose Delete all favourites
+
+### Calling Functions in SAP GUI
+
+- There are multiple options to do this: Enter transaction codes in Command Field, Selecting entries from SAP menu, selecting entries from user menu, Selecting entries from the list of favourites, Choosing items from menus in the menu bar
+
+- Alt + # shortcut to reach the menus in the menu bar
+
+- For SAP Easy Access screen: using keyboard or Command field
+
+- F1 to display input options for this field
+
+**Possible Entries in the OK Code Field**
+
+- /n -> cancel current transaction
+
+- /nXXXX -> call transaction XXX directly from another transaction. Without prefix, you can call the XXXX transaction from SAP Easy Access screen
+
+- /o -> display an overview of sessions
+
+- /oXXXX -> call transaction XXXX in a new sessions directly from another transaction
+
+- /nEND -> end logon session with a confirmation dialog box
+
+- /nEX -> end the logon session without confirmation dialog box
+
+- /i -> delete the session currently using
