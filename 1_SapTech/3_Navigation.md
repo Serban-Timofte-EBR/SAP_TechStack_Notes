@@ -14,4 +14,8 @@
 
 ## SAP System Kernel
 
-- 
+- We can separate processes ar application level from processes at database level
+
+- The database for a SAP system can be installed and operated on a separate host
+
+- After SAP Logon -> we have the load balancing of the users
