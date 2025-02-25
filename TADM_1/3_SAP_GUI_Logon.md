@@ -139,3 +139,53 @@ SAP GUI for Windows             SAP GUI for Java            SAP GUI for HTML
 ### Personalization of the SAP GUI
 
 - How to adapt the local layout? Using SAP GUI settings and actions can manage the input history by choosing Options ... -> Local Data. If activatedm the input history creates a small database on the FE containing the last n entries made in the input fields in transactions.
+
+## Describing Navigation using a Web Browser
+
+- Transaction PAL (Printing Assitant for Landscape) opens in a web browser
+
+## SAP Business Client
+
+- Provides users with a local client with a role-based navigation
+
+- Central point of access for all SAP applications and transactions
+
+**Comparison of SAP Business Client Functions**
+
+| SAP Business Client for HTML    | SAP Business for Windows |
+| -------- | ------- |
+| No installation required  | Is installed on the end user device    |
+| Integrated into the browser (SAP GUI for HTML) | Includes SAP GUI functionality     |
+| Restricted functional scope on search functions, dropdown menus, drag and drop    | Offers functional scope    |
+| No SAP Enterprise Portal functionality    | Can be used for SAP Enterprise Portal including role content    |
+| Available for Windows, Linux and Mac OS    | Available for Windows only    |
+
+## SAP Business Client for Windows
+
+- UI intended for power users
+
+- Is Used as a rendering engine
+
+- SAP Business Client for Windows therefore replaces the SAP GUI as the central point of access for SAP applications
+
+## SAP Business Client for HTML
+
+- Browser-based interface with a restricted functional scope
+
+- Used for ABAP transcations in order to access AS ABAP systems
+
+1. Start SAP Business Client fot HTML
+
+&emsp;&emsp; - Enter transcation *NWBC* in the SAP System
+
+&emsp;&emsp; - OR: start the browser and navigate to https://<fully qualified host name> : <ICM_HTTPS_PORT>/sap/bc/nwbc
+
+2. The business client for HTML opens in the browser windows
+
+- SAP Business Client depends on the role assigned to the user. *Transaction for role maintenance is PFCG*
+
+## Observations
+
+- We can work in multiple windows (sessions) at a time in an SAP System within one log on
+
+- SAP GUI for HTML can be used to log on to AS ABAP-based SAP systems. SAP GUI for HTML it is not available for AS Java-based SAP Systems
