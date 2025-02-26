@@ -185,7 +185,7 @@ Message Server (MS) ----- Enqueue Server ----- RFC Gateway
 
 - A work process has a task handler that coordinates the actions within a work process, software processors and database interface.
 
-- **Dynpro processor** executes the screen flow logic of the application program, calls proessing logic of ABAP application and trasnsfers field content to the processing logic
+- **Dynpro processor** executes the screen flow logic of the application program, calls processing logic of ABAP application and trasnsfers field content to the processing logic
 
 - The actual processing logic of ABAP application is executed by the **ABAP Interpreter**
 
@@ -269,3 +269,255 @@ Message Server (MS) ----- Enqueue Server ----- RFC Gateway
 - Transaction = Processing units grouped to provide specific units
 
 - Transaction are ACID (Atomic, Consistent, Independent, Durable)
+
+- Every work process is connected to a specific communication partner at database level. Cannot change it at runtime
+
+- Business transactions are processing units groupped to provide a specific function. These processing units execute changes to the database that are consistent and make sense in business terms.
+
+### Lock Management
+
+- To ensure consistency, data cannot be accessed and changed by more than one user at any one time. => **Lock Management Concepts**
+
+- The lock management is implemented via enqueue process
+
+- Lock entries for data records are processed into a lock table. Lock entries can only be made if none already exist for the table entries to be locked
+
+- The enqueue process can be implemented in one of the following ways:
+
+1. As a work process
+
+2. As part of ABAP Central Service Instance (preffered)
+
+#### Lock Modes
+
+1. Write Locks
+
+&emsp;&emsp; - Lock data can be edited only by one user
+
+&emsp;&emsp; - Other requests are rejected
+
+2. Read Locks
+
+&emsp;&emsp; - Several users can have access to the locked data at the same time
+
+&emsp;&emsp; - Additional read locks are accepted
+
+&emsp;&emsp; - Write locks are rejected
+
+3. Enhanced write locks
+
+&emsp;&emsp; - Write Locks can be successively requested and released by the same transaction
+
+&emsp;&emsp; - An ENHANCED Write Lock can only be requested once, even by the same transaction
+
+4. Optimistic Locks
+
+&emsp;&emsp; - Respond like read lock ar first and can be changed to write locks
+
+&emsp;&emsp; - Is set if the user displays the data in change mode
+
+&emsp;&emsp; - Optimistic Locks on the same object do not collide
+
+&emsp;&emsp; - To save data, the optimisitc lock should be changed to a write lock
+
+- There are two ways to delete locks held by users: 
+
+1. Ending user session in the user overview (Transaction SM04)
+
+2. Manually deleting the lock entries in SM12/SMENQ
+
+### Update Processing
+
+- In SAP System a business process is mapped using an SPA transaction (can contain several screen changes)
+
+- If user want to change a data record in an SAP transaction, they call the corresponding transaction in the dialog, make the appropiate entries on the screens and then initiate the update process by saving the data
+
+- The steps of making a change in a data record in SAP Systems:
+
+1. The program locks the data record for the user
+
+&emsp;&emsp; - Addressing the enqueue work process
+
+&emsp;&emsp; - The enqueue work process makes the relevant entry in the lock table or returns errors if there is a problem with the lock
+
+2. If enqueue work process succeeded in writing the lock entry to the lock table, it passes the lock key it created to the user
+
+&emsp;&emsp; - Program reads the record to be changed from the database and the user can change the record on the screen imagine of the SAP transaction
+
+3. In the current dialog work process the program calls a function module using CAL FUNCTION ... IN UPDATE TASK
+
+&emsp;&emsp; - After, it writes the update request to database update tables
+
+&emsp;&emsp; - These funtions are called **VB** = act like temporary memory and store the data to be changed until it can be collected and written to the application tables in the database
+
+4. At the end the transaction is closed with COMMIT WORK
+
+&emsp;&emsp; - In this way the program initiatiates the close of the transaction after the end of the dialoag part of the transaction
+
+5. Transfer from the dialog work processm update work process reads the log records that belong to this SAP transaction
+
+6. The update work process transfer the changes marjed and collected in the VB tables to the datbase as an update request and evaluates the database response
+
+&emsp;&emsp; - If an error occurs, the update work process triggers a database rollback leaves the log records in the VB tables and marks them as defective
+
+7. The lock entries in the lock table are reset
+
+### Printing
+
+- A printer (fax, email and so on) must be first set up in the SAP System before it can be addressed
+
+- Shortcut: CTRL + P
+
+- After selecting a printer, a spool request contains information about data to be output, its formatting and the printer model used
+
+### Background Processing
+
+- SAP background processing is a method for automating routine tasks and for optimizing the use of computing resources
+
+- In background processing, the developer instruct the SAP system to run programs
+
+- It is suitable for long-running or resource-intensive programs at off peak times
+
+- Segregation of background processing to special work processes gives an additional dimension for separating background processing and interactive work
+
+### Communication Through RFC Gateway
+
+- RFC = Remote Function call
+
+- Each AS ABAP system contains a RFC
+
+- When RCF or CPIC (Common Program Interface Communication) is used to communicate between application servers or SAP systems
+
+#### Use case: Dialog work process has to establish an RFC connecton to a remote SAP System
+
+- In the context of a request: retrieve customer data
+
+1. The dialog work process uses a gateway of a remote SAP System
+
+2. The remote gateway then transfers the request to the dispatcher
+
+3. The dispatcher forwards the request to one of its work processes
+
+4. The work process communicates directly with its gateway
+
+### Processing Web requests
+
+- ICM = Internet Communication Manager
+
+- ICM enables SAP Systems to communicate using the protocols like HTTP(S) and SMTP
+
+- ICM process the request and HTTP(S) requets can be processed in the ABAP work process
+
+- If data is needed from the AS ABAP database, "memory pipes" are used to establish a connection to a work process
+
+- ICM forwards the request to the ABAP Dispatcher which can handle the request as a normal one
+
+```txt
+Web Browser ------------|---------|                                           (3)
+                  (1)   |   ICM   | ---------------------> ABAP Dispatcher ----------> D -------> ABAP Database
+                  (1)   |         |          (2)                                                        |
+Web Browser ------------|---------| <----------------------- Memory Pipes  <---------- D  <-------------| 
+                                                                (4)                           (same D)
+```
+
+- The work process (D) can directly generate Web-enabled content which can be transferred to the browser via the ICM
+
+### Administration Tasks for AS ABAP
+
+| Transcation Code  | Action  |
+| ----------------- | ------- |
+| SM51 | Application Server(s) |
+| SM50 | Work Process |
+| SM04 | Active Users |
+| SU01/SU10 | User Maintenance |
+| SM36/SM37 | Background Processing |
+| SM21 | System Log(s) |
+| SM12/SMENQ | Lock Entries |
+| SM 13 | Update Records |
+| SM02 | System Messages |
+
+### Functions of the Computing Center Management Systems (CCMS)
+
+- The CCMS is a collection of integrated tools for managing, running and monitoring SAP Systems
+
+- Roles of CCMS:
+
+1. Background processing and job monitoring (SM37)
+
+2. Configuration of the printer landscape (SPAD)
+
+3. Tuning of the main memory areas of the SAP Systems (ST02)
+
+4. Database Management (ex: backup) (DBACOCKPIT)
+
+5. Configuration of SAP System Profiles (RZ10)
+
+6. Dynamic load balancing (SMLG)
+
+7. SAP System Monitoring (RZ20)
+
+- The call of these functions are located in Tools -> CCMS
+
+### Addendum: ABAP Message Server
+
+- One MS runs in each SAP System
+
+- Roles:
+
+1. Central communication channel between the individual application servers of SAP Systems
+
+2. Load Balancing of Logons
+
+3. Information point for hte SAP Web Dispatcher and Application Server
+
+- Application Server Started -> Dispatcher process contacts the message server -> Announce the services it provides
+
+## Describing AS Java
+
+- 3 Layers Infrastructure:
+
+1. Presentation Layer: Web Browser
+
+2. Application Layer: ICM redirects the information to SP + AS Java Buffer
+
+3. Database Layer: DB - processes
+
+- Web browser = standard UI for AS Java
+
+- User request for AS Java = HTTP(S) request (usually) - it is received by ICM
+
+- Processing -> takes place in the server process
+
+- Nodes = server processes of AS Java
+
+### Transactional Processing in AS Java
+
+- Respects the ACID concept
+
+- In AS Java changes and entries in UI are not made persistent immediately
+
+- Only at save time the DB Transaction is performed
+
+#### Persistence
+
+- OpenSQL for Java framework
+
+- Flow: Java Program -> Open SQL Engine (Communicates I/O with AS Java Buffer) -> Java
+
+#### AS Java Administration
+
+- SAP NetWeaver Administrator = combines the most important administration and monitoring tools
+
+- To start SPA NetWeaver Administrator access https://<host name>:<port number>/nwa
+
+##### Functional Areas of SAP NetWeaver Administrator
+
+1. Availability and performance
+
+2. Operations (application manager, start / stop)
+
+3. Configuration (licenses, AS Java system properties, log configuration)
+
+4. Error Analysis (SAP System Information, Java Class loader, Viewer)
+
+5. SOA (JCo RFC provider)
