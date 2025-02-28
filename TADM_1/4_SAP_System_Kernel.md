@@ -420,6 +420,7 @@ Web Browser ------------|---------| <----------------------- Memory Pipes  <----
                                                                 (4)                           (same D)
 ```
 
+
 - The work process (D) can directly generate Web-enabled content which can be transferred to the browser via the ICM
 
 ### Administration Tasks for AS ABAP
@@ -521,3 +522,17 @@ Web Browser ------------|---------| <----------------------- Memory Pipes  <----
 4. Error Analysis (SAP System Information, Java Class loader, Viewer)
 
 5. SOA (JCo RFC provider)
+
+### ABAP Language
+
+- Programming Language for business applications
+
+```sql
+REPORT first_program
+
+WRITE 'My first ABAP program!'
+```
+
+- Each screen (screens, selection screens, lists) communicates with ABAP to perform database operations
+
+- To access the ABAP Source Code: System -> Status ... and double click to navigate to relevant ABAP Workbench tool

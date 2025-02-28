@@ -115,3 +115,23 @@ Basic Functionality:        AS ABAP                         AS Java
 - In SAP systems there are NOT implemented two-tier configurations (the ones with a powerful desktop systems and to use these for presentation and applications)
 
 - In SAP S/4HANA and SAP Business Suite environment more complex client/server configurations consisting of more than three tiers are possible and used
+
+### ABAP Workbench Functionalities and Tools
+
+1. ABA Editor -> write ABAP programs
+
+2. ABAP Dictionary -> Define and describe tables, data elements, lock objects, etc
+
+3. Screen Painter -> create UI
+
+4. Function Builder -> create and manage function modules
+
+- **Flow:** Development Environment (ABAP tools, Data Modeler, Screen Painter) ---> ABAP Dictionary ---> Runtime environment of the application (ABAP Interpreter, Dialog - control, Interfaces, DnproInterpreter)
+
+- Table definition is database - independent
+
+#### Excursus: Core Data Services Views (CDS Views)
+
+- ABAP Dictionary allows the creation of views = grouping of columns from one or more database tables
+
+- When joining tables, a view usually implements a join with statically 
