@@ -108,3 +108,5 @@
 | Internal Service User | Not possible | - | - |
 | Unknown | Depends on AS ABAP user type | Depends on AS ABAP user type | Communication, Service and Reference |
 | Custom Profile | Possible | Yes | - |
+
+- The user type is specified during creation process via Identity Management
