@@ -110,3 +110,54 @@
 | Custom Profile | Possible | Yes | - |
 
 - The user type is specified during creation process via Identity Management
+
+## Differentiating and using Authorization Concepts
+
+1. Protecting Access to Applications
+
+&emsp;&emsp; - JEE Security role
+
+2. Protecting Access to Individual Activites
+
+&emsp;&emsp; - JEE Security role
+
+&emsp;&emsp; - UME Action / UME Permissions
+
+3. Protecting Access to Objects
+
+&emsp;&emsp; - Access Control List (ACL)
+
+- In AS Java we can use Activity - related access control with security roles, Instance-related access control with roles and Intance-related access control with access control lists
+
+### Creating and Assigning UME Roles
+
+- Use Identity Management to maintain UME roles
+
+## Naming special Principles
+
+| User | Database | LDAP Server | ABAP System Add-in (+ABAP Java) | ABAP System Remote |
+| ---- | -------- | ----------- | ------------------------------- | ------------------ |
+| Administration user | Administrator | Administrator | J2EE_ADMIN | J2EE_ADM_<SID> |
+| Guest User | Guest | Guest | J2EE_GUEST | J2EE_GST_<SID> |
+| Communication user to data source | SAP<SID>DB | Freely definable | SAPJSF | SAPJSF_<SID> |
+
+- Every user assigned to the Administrator group are given extensive system authorizations
+
+- Emergency users = user for the UME if the user management has been incorrectly configured and no one can log on to an application
+
+### Role Tree
+
+- Permissions are combined into actions. The administrator then conbined actions into roles. UME roles can be assigned to a user
+
+```txt
+Permission  Permission  Permission  Permission  Permission  Permission  Permission  Permission
+    |           |           |           |           |           |           |           |
+    |           |           |           |           |           |           |           |
+    | --------- | --------- |           | --------- | --------- |           | --------- |       
+                |                                   |                              |
+              Action                              Action                        Action
+                |                                   |                              |
+                | --------------------------------- | ---------------------------- |
+                                                    |
+                                                   Role
+```
