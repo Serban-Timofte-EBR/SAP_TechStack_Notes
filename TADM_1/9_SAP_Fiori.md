@@ -188,3 +188,37 @@ Area    |                           Technical Catalog                           
 ## Creating SAP Fiori Spaces and Pages
 
 - Manage Launchpad Spaces is an SAP Fiori Launchpad (FLP) app based on SAPUI5
+
+## Managing SAP Fiori Catalogs
+
+- **Tile** = a container that represents an App on the FLP
+
+- The technical catalogs (TCR) cut apps by solutuion area and provide app descriptos consiting of tiles and target mappings for web apps
+
+- Business catalogs (BCR) reference tiles and target mappings of TCs and BECs according to segregation of duty
+
+- In SPA Business Suite, both TCR and BCR are replaced by BR (Business Roles)
+
+### Catalog Management
+
+- Standard, replicable and back-end catalogs are visible as read-only catalogs in the FLPD (Designer) and FLPCM (Content Manager). Both tools can display only the apps defined inside these catalogs as tiles and target mapping
+
+- Remote catalogs can be used to load additional tiles from a remote system
+
+### FLP Content Manager (FLPCM)
+
+- FLPCM ease mass-administration of catalogs
+
+### Important Info for Recap
+
+- Dimensions of SAP Fiori: Design, Principles, Technology
+
+- Main principles of SAP Fiori: Role-based, Adaptive, Simple, Coherent, Delightful
+
+- Clients can be used for SAP Fiori: Web browsers, SAP Business Client
+
+- Platforms that can integrate SAP Fiori: SAP Enterprise Portal, SAP Build Work Zone, SAP Mobile Services
+
+- Perosanlization elements can be assigned to user roles: SAP Fiori group / catalog / space
+
+- Apps meant by the term classic applications: ABAP Transactions, Web Dynpro ABAP applications
