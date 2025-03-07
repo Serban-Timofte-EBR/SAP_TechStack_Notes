@@ -213,3 +213,47 @@ Collection             (DB)                   (OS)           (Dispatcher)       
 - *Guided Answers* is dedicated to support customers and partners => output of a search is Guided Answer Tree
 
 ## Using Local Monitoring functions for AS Java (SAP MC and NWA)
+
+- SAP NetWeaver AS Java provides an infrastructure that makes monitoring data available (available in SAP NetWeaver Administrator)
+
+### Monitoring Infrastructure
+
+```txt
+                               | -------------------- |           AS JAVA
+Applications ----------------- |    Monitoring        |                      ICM
+                               |           Segment    |                       |
+Kernel ----------------------- |                      |                       |
+                               |                      |      (collect)        |
+Services --------------------- |                      | <---------------- SP (JMX)
+                               |                      |
+Performance ------------------ |                      |
+                               | -------------------- |
+                                           |
+                                           | (create)
+                                           |
+                                        sapstartsrv
+```
+
+- The data of JMX monitors is stored in the monitoring segment. The external tools connect through the JMX API and can display all current values in the JMX Monitors
+
+1. Applications
+
+&emsp;&emsp; - Contains information about the satus that are running on AS Java and for which monitoring functions are implemented in the coding
+
+&emsp;&emsp; - Configurable type of monitor
+
+2. Kernel
+
+&emsp;&emsp; - Status information for the managers registered for monitoring is displayed under the Kernel Entry
+
+&emsp;&emsp; - Reserved for data that is directly and automatically collected by the system
+
+3. Services
+
+&emsp;&emsp; - Status information for the services registred for monitoring is displayed under the Service entry
+
+&emsp;&emsp; - Reserved for data that is directly and automatically collected by the system
+
+4. Performance
+
+&emsp;&emsp; - Performance area displays available data about performance measurements of AS Java (e.g. communication to external services)
