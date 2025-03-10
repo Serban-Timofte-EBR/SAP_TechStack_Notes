@@ -257,3 +257,69 @@ Performance ------------------ |                      |
 4. Performance
 
 &emsp;&emsp; - Performance area displays available data about performance measurements of AS Java (e.g. communication to external services)
+
+## Explaining the Concept of Monitoring Tools in SAP Solution Manager
+
+- MAI = Monitoring and Alerting Infrastructure (for Centralized Monitoring)
+
+- MAI is introduced in SAP Solution Manager
+
+- Components for SAP Solution Manager:
+
+1. CA Introscope Adapter (IS Adapter)
+
+&emsp;&emsp; - Collect performance data and metrics from various components
+
+2. CA APM Introscope Enterprise Manager (EM)
+
+&emsp;&emsp; - Serves as central Storage System where all data callected by IS Agents (see nr. 1) is stored centrally
+
+3. SAP Solution Manager Diagnostics Agent
+
+&emsp;&emsp; - Creates connection between SAP Solution Manager and managed system
+
+&emsp;&emsp; - Collect information from the remote system
+
+4. SAP Host Agent
+
+&emsp;&emsp; - Monitors the interaction between the host sustem and OS
+
+5. Extractor Framework
+
+&emsp;&emsp; - Processes the information from the connected ABAP systems and from teh CAP APM Introscope Enterprise Manager
+
+6. ST-PI and ST-A/PI
+
+&emsp;&emsp; - An interface for the collection and transmission of dat and performance metrics of ABAP components
+
+### System and Application Monitoring Use Cases
+
+1. System Monitoring
+
+&emsp;&emsp; - System Monitoring application provides an overview of the current status of technical systems, including their associated instances, databases and hosts
+
+&emsp;&emsp; - Based on automated checks in regular time intervals in the Availability, Performance, Exceptions and Configurations
+
+2. User Experience Monitoring
+
+&emsp;&emsp; - UXMon (formerly EEM) is a toolbox for evaluating and reporting the availability and performance of your productive systems from a client-side perspective
+
+3. Interface Monitoring
+
+&emsp;&emsp; - Monitor various interface technologies within the landscape
+
+4. Process Integration Monitoring
+
+&emsp;&emsp; - Unified alert notifications, exceptions and status of PI componets form single-entry point
+
+5. Business Intelligence Monitoring
+
+&emsp;&emsp; - Includes status overview for all technical components involved in SAP Business Intelligence Solution
+
+## Important Information
+
+- Transaction RZ20: Monitor the database and SAP System
+
+- Active trace for SQL Statements in the SAP System: Performance Analysis, System trace
+
+- Using Monitor Browser in NWA: Changes to threshold values, Display monitoring data for Java instances
