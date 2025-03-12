@@ -56,3 +56,13 @@ SAP Fiori is a user experience (UX) design system developed by SAP to offer a re
 - **Catalogs**: Groups of tiles assigned to specific roles or functionalities.
 - **Groups**: Logical collections of tiles shown together for users.
 - **Spaces**: The overall layout and structure of the Fiori Launchpad, defining how tiles and groups are displayed for different users.
+
+## Transactions
+
+| Trasaction Code | Purpose |
+| --------------- | ------- |
+| SU01 | User Maintenance (CRUD) |
+| SM21 | System logs |
+| ST22 | ABAP dumps (runtime errors) |
+| SM37 | Job monitoring (background jobs) |
+| RZ10 | System profile parameters |
