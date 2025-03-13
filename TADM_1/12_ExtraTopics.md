@@ -66,3 +66,39 @@ SAP Fiori is a user experience (UX) design system developed by SAP to offer a re
 | ST22 | ABAP dumps (runtime errors) |
 | SM37 | Job monitoring (background jobs) |
 | RZ10 | System profile parameters |
+
+## SAP Integration Process
+
+1. SAP Process Integration (SAP PI) / SAP Process Orchestration (SAP PO)
+
+- SAP PI/PO is the primary middleware solution for enterprise application integration.
+
+- It facilitates the exchange of information between SAP and non-SAP systems.
+
+- Uses integration scenarios such as synchronous/asynchronous communication, message transformation, and routing.
+
+- Supports protocols such as SOAP, REST, FTP, and IDocs
+
+2. SAP Cloud Integration (SAP Integration Suite)
+
+- A cloud-based integration solution that allows SAP systems to integrate with cloud and on-premise applications.
+
+- Provides pre-built integration content and APIs.
+
+- Supports API management, event-driven integration, and workflow automation.
+
+3. SAP Gateway
+
+- Used to expose SAP Business Suite data as OData services.
+
+- Enables RESTful API-based communication.
+
+- Commonly used in SAP Fiori applications.
+
+4. Remote Function Call (RFC)
+
+- RFC is a standard SAP protocol for internal and external communication.
+
+- Supports synchronous and asynchronous communication.
+
+- Used for connecting SAP systems (SAP-to-SAP) or external systems to SAP.
